@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Zone</title>
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Font.css">
+
+
+
+
+
+
+</head>
+
+<body>
+
+    <!-- header section starts -->
+
+
+    <header>
+
+        <a href="#" class="logo"><i class="fas fa-utensils"></i>Food Zone</a>
+
+        <div id="menu-bar" class="fas fa-bars"></div>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#speciality">speciality</a>
+            <a href="#order">order</a>
+            <a href="#gallery">gallery</a>
+            <a href="#review">review</a>
+            <a href="#contact">contact</a>
+
+
+        </nav>
+        <!-- add too card ko lagi -->
+        <div class="icons">
+
+            <a href="#" class="fas fa-user-circle"></a>
+        </div>
+
+
+    </header>
+    <!-- add too card ko lagi -->
+
+    <!-- header section ends -->
+
+    <!-- home section starts -->
+
+    <section class="home" id="home">
+        <div class="content">
+            <h3>A life full of Tasty Food ENJOY !</h3>
+            <p>You can’t stop eating, so go!</p>
+
+        </div>
+        <div class="image">
+            <img src="images/home.png" alt="">
+        </div>
+
+    </section>
+    <!-- home section ends-->
+
+
+
+    <!-- speciality section starts-->
+    <section class="speciality" id="speciality">
+
+        <h1 class="heading">our <span>speciality</span></h1>
+
+        <div class="box-container">
+            <div class="box">
+                <img class="image" src="images/b.jpg" alt="">
+                <div class="content">
+                    <img src="images/s-1.png" alt="">
+                    <h3>burger</h3>
+                    <p>it has lettuce and tomato…so a burger is basically a salad</p>
+
+                </div>
+            </div>
+            <div class="box">
+                <img class="image" src="images/b2.jpg" alt="">
+                <div class="content">
+                    <img src="images/s-2.png" alt="">
+                    <h3>pizza</h3>
+                    <p>it has lettuce and tomato…so a burger is basically a salad</p>
+
+                </div>
+            </div>
+            <div class="box">
+                <img class="image" src="images/b3.jpg" alt="">
+                <div class="content">
+                    <img src="images/s-3.png" alt="">
+                    <h3>cold ice-cream</h3>
+                    <p>it has lettuce and tomato…so a burger is basically a salad</p>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <img class="image" src="images/b4.jpg" alt="">
+                <div class="content">
+                    <img src="images/s-4.png" alt="">
+                    <h3>cold drinks</h3>
+                    <p>it has lettuce and tomato…so a burger is basically a salad</p>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <img class="image" src="images/b5.jpg" alt="">
+                <div class="content">
+                    <img src="images/s-5.png" alt="">
+                    <h3>sweets</h3>
+                    <p>it has lettuce and tomato…so a burger is basically a salad</p>
+
+                </div>
+
+
+            </div>
+            <div class="box">
+                <img class="image" src="images/b.jpg" alt="">
+                <div class="content">
+                    <img src="images/s-1.png" alt="">
+                    <h3>burger</h3>
+                    <p>it has lettuce and tomato…so a burger is basically a salad</p>
+
+                </div>
+            </div>
+            <div class="box">
+                <img class="image" src="images/b2.jpg" alt="">
+                <div class="content">
+                    <img src="images/s-2.png" alt="">
+                    <h3>pizza</h3>
+                    <p>it has lettuce and tomato…so a burger is basically a salad</p>
+
+                </div>
+            </div>
+            <div class="box">
+                <img class="image" src="images/b3.jpg" alt="">
+                <div class="content">
+                    <img src="images/s-3.png" alt="">
+                    <h3>cold ice-cream</h3>
+                    <p>it has lettuce and tomato…so a burger is basically a salad</p>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <img class="image" src="images/b4.jpg" alt="">
+                <div class="content">
+                    <img src="images/s-4.png" alt="">
+                    <h3>cold drinks</h3>
+                    <p>it has lettuce and tomato…so a burger is basically a salad</p>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <img class="image" src="images/b5.jpg" alt="">
+                <div class="content">
+                    <img src="images/s-5.png" alt="">
+                    <h3>sweets</h3>
+                    <p>it has lettuce and tomato…so a burger is basically a salad</p>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+    <!-- speciality section ends-->
+
+
+
+    <!-- popular section starts-->
+
+    <section class="order" id="order">
+
+        <?php
+        //including the database connection file
+        include_once("connectdbFood.php");
+    
+        //fetching data in descending order (lastest entry first)
+        $result = $pdo->query("SELECT * FROM foods ORDER BY id DESC");
+        ?>
+
+        <h1 class="heading">most <span>ordered </span>foods</h1>
+        <div class="box-container">
+            <?php
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                
+                echo '<div class="box">
+        <span class="price">Rs.' . $row['price'] . '</span>';
+
+$imgFile=$row['img'];
+                if (file_exists("img/food/".$imgFile)) {
+                    
+                    echo  '<img src="img/food/'.$imgFile.'">';
+                }
+
+                echo '<h3>' . $row['fname'] . '</h3>
+        <div class="stars">
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <style>
+                .checked{
+                    color: rgb(255, 0, 0);
+                }
+            </style>
+
+            <span class="fas fa-star checked" style="font-size:20px;"></span>
+           <span class="fas fa-star checked" style="font-size:20px;"></span>
+           <span class="fas fa-star checked" style="font-size:20px;"></span>
+           <span class="fas fa-star" style="font-size:20px;"></span>
+            <span class="fas fa-star" style="font-size:20px;"></span>
+        </div>
+          <a href="ordered.html" class="btn">order now</a>
+    </div>';
+            }
+            ?>
+
+        </div>
+
+
+    </section>
+    <!-- popular section end-->
+
+    <!-- gallery section starts -->
+
+    <section class="gallery" id="gallery">
+        <h1 class="heading"> our food <span>gallery</span>
+        </h1>
+        <div class="box-container">
+            <div class="box">
+                <img src="images/g1.jpg" alt="">
+                <div class="content">
+                    <h3>Burger</h3>
+                    <p>THIS IS TASTYYYYTHIS IS TASTYYYYTHIS IS TASTYYYY.</p>
+                    <a href="#order" class="btn">order now</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="images/g2.jpg" alt="">
+                <div class="content">
+                    <h3>Momo</h3>
+                    <p>THIS IS TASTYYYYTHIS IS TASTYYYYTHIS IS TASTYYYY.</p>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/g3.jpg" alt="">
+                <div class="content">
+                    <h3>Biryani</h3>
+                    <p>THIS IS TASTYYYYTHIS IS TASTYYYYTHIS IS TASTYYYY.</p>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/g4.jpg" alt="">
+                <div class="content">
+                    <h3>Newari Khaja</h3>
+                    <p>THIS IS TASTYYYYTHIS IS TASTYYYYTHIS IS TASTYYYY.</p>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/g4.jpg" alt="">
+                <div class="content">
+                    <h3>Burger</h3>
+                    <p>THIS IS TASTYYYYTHIS IS TASTYYYYTHIS IS TASTYYYY.</p>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/g1.jpg" alt="">
+                <div class="content">
+                    <h3>Burger 5</h3>
+                    <p>THIS IS TASTYYYYTHIS IS TASTYYYYTHIS IS TASTYYYY.</p>
+
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/g1.jpg" alt="">
+                <div class="content">
+                    <h3>Burger6</h3>
+                    <p>THIS IS TASTYYYYTHIS IS TASTYYYYTHIS IS TASTYYYY.</p>
+
+                </div>
+            </div>
+
+
+            <div class="box">
+                <img src="images/g2.jpg" alt="">
+                <div class="content">
+                    <h3>Burger7</h3>
+                    <p>THIS IS TASTYYYYTHIS IS TASTYYYYTHIS IS TASTYYYY.</p>
+
+                </div>
+            </div>
+
+
+            <div class="box">
+                <img src="images/g3.jpg" alt="">
+                <div class="content">
+                    <h3>Burger8</h3>
+                    <p>THIS IS TASTYYYYTHIS IS TASTYYYYTHIS IS TASTYYYY.</p>
+
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- gallery section ends -->
+
+
+    <!-- review section starts -->
+
+    <section class="review" id="review">
+        <h1 class="heading">our customers <span>reviews</span></h1>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+
+
+
+
+
+        <div class="box-container">
+
+
+            <div class="box">
+                <img src="images/f1.jpg" alt="">
+                <h3>SHITA</h3>
+                <div class="stars">
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe quas iste quasi ratione libero aspernatur
+                    eveniet facilis dolores repellat amet.</p>
+            </div>
+
+
+
+            <div class="box">
+                <img src="images/f2.jpg" alt="">
+                <h3>GITA</h3>
+                <div class="stars">
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                    <span class="fas fa-star" style="font-size:20px;"></span>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe quas iste quasi ratione libero aspernatur
+                    eveniet facilis dolores repellat amet.</p>
+            </div>
+
+
+
+            <div class="box">
+                <img src="images/f3.jpg" alt="">
+                <h3>RAM</h3>
+                <div class="stars">
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                    <span class="fas fa-star checked" style="font-size:20px;"></span>
+                    <span class="fas fa-star" style="font-size:20px;"></span>
+                    <span class="fas fa-star" style="font-size:20px;"></span>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe quas iste quasi ratione libero aspernatur
+                    eveniet facilis dolores repellat amet.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- review section ends -->
+
+
+
+    <!-- order section starts -->
+
+    <section class="contact" id="contact">
+        <h1 class="heading"><span>contact</span> us</h1>
+
+        <div class="row">
+            <div class="image">
+                <img src="images/contact-img.png" alt="">
+            </div>
+
+            <form action="">
+
+                <div class="inputBox">
+                    <input type="text" placeholder="Name">
+                    <input type="email" placeholder="Email">
+                </div>
+                <div class="inputBox">
+                    <input type="number" placeholder="Number">
+
+                </div>
+
+
+
+                <textarea placeholder="Message" name="" id="" cols="30" rows="10"></textarea>
+
+                <input type="submit" value="Send" class="btn">
+
+
+
+            </form>
+
+
+
+
+
+
+
+        </div>
+
+
+    </section>
+
+    <!-- order section ends -->
+
+
+
+
+
+
+    <!-- footer section starts  -->
+
+    <div class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>about us</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet pariatur rerum consectetur architecto ad tempora blanditiis quo aliquid inventore a.</p>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#home">home</a>
+                <a href="#speciality">speciality</a>
+                <a href="#order">order</a>
+                <a href="#gallery">gallery</a>
+                <a href="#review">review</a>
+                <a href="#contact">contact</a>
+            </div>
+
+            <div class="box">
+                <h3>follow us</h3>
+
+                <a href="https://www.facebook.com/">facebook</a>
+
+                <a href="https://www.instagram.com/">instagram</a>
+                <a href="https://www.youtube.com/">youtube</a>
+                <a href="https://twitter.com/home">twitter</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <div class="info">
+                    <i class="fas fa-phone"></i>
+                    <p> +98412345678 <br> +4997823 </p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-envelope"></i>
+                    <p> foodzone@gmail.com <br> food.zone.com </p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p> Kathmandu, Kirtipur - 666 </p>
+                </div>
+            </div>
+
+        </div>
+
+        <h1 class="credit"> &copy; copyright @ 2021 by Food zone </h1>
+
+    </div>
+
+    <!-- footer section ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--scroll top button-->
+
+    <a href="#home" class="fas fa-angle-up" id="scroll-top"></a>
+
+
+
+
+
+
+
+
+
+
+    <!-- custom css file link -->
+
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>
+
